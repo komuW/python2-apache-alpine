@@ -40,12 +40,6 @@ RUN set -x \
 		openssl \
 		openssl-dev \
 		pcre-dev \
-		bash \
-		postgresql-dev \
-		python-dev \
-		musl-dev \
-		libxml2-dev \
-		libxslt-dev \
 		tar \
 	\
 	&& wget -O httpd.tar.bz2 "$HTTPD_BZ2_URL" \
@@ -85,6 +79,14 @@ RUN set -x \
 	)" \
 	&& apk add --virtual .httpd-rundeps $runDeps \
 	&& apk del .build-deps
+
+# this dependencies will be needed by pip packages
+RUN apk add --no-cache gcc \
+        postgresql-dev \
+		python-dev \
+		musl-dev \
+		libxml2-dev \
+		libxslt-dev
 
 COPY httpd-foreground /usr/local/bin/
 
