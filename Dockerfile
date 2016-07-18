@@ -86,7 +86,8 @@ RUN apk add --no-cache gcc \
 		python-dev \
 		musl-dev \
 		libxml2-dev \
-		libxslt-dev
+		libxslt-dev \
+		apache2-mod-wsgi
 
 COPY httpd-foreground /usr/local/bin/
 
