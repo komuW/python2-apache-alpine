@@ -40,6 +40,9 @@ RUN set -x \
 		openssl \
 		openssl-dev \
 		pcre-dev \
+		apache2-dev \
+		apache2-utils \
+		py-pip \
 		tar \
 	\
 	&& wget -O httpd.tar.bz2 "$HTTPD_BZ2_URL" \
@@ -62,6 +65,7 @@ RUN set -x \
 	&& make -j"$(getconf _NPROCESSORS_ONLN)" \
 	&& make install \
 	\
+	&& pip install mod_wsgi \
 	&& cd .. \
 	&& rm -r src \
 	\
@@ -86,8 +90,7 @@ RUN apk add --no-cache gcc \
 		python-dev \
 		musl-dev \
 		libxml2-dev \
-		libxslt-dev \
-		apache2-mod-wsgi
+		libxslt-dev
 
 COPY httpd-foreground /usr/local/bin/
 
