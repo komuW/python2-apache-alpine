@@ -90,5 +90,8 @@ RUN apk add --no-cache gcc \
 
 COPY httpd-foreground /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/httpd-foreground
+
 EXPOSE 80
-CMD ["httpd-foreground"]
+
+CMD ["/usr/local/bin/httpd-foreground"]
